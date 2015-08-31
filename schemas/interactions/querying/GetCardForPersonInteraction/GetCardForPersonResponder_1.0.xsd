@@ -19,12 +19,14 @@
  -->
 <xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema' 
     xmlns:tns='urn:com:logica:se:healthcare:efrikort:querying:GetCardForPersonResponder:1'                
+    xmlns:efrikortriv='urn:com:logica:se:healthcare:efrikort:riv:1'
     xmlns:efrikort='urn:com:logica:se:healthcare:efrikort:1'
     targetNamespace='urn:com:logica:se:healthcare:efrikort:querying:GetCardForPersonResponder:1'
     elementFormDefault='qualified'
     attributeFormDefault='unqualified'
     version='1.0'>
 
+    <xs:import schemaLocation='../../../core_components/ehr_efrikortriv_1.0.xsd' namespace='urn:com:logica:se:healthcare:efrikort:riv:1' />
     <xs:import schemaLocation='../../../core_components/ehr_efrikort_1.0.xsd' namespace='urn:com:logica:se:healthcare:efrikort:1' />
 
 
@@ -33,12 +35,14 @@
     <xs:complexType name='GetCardForPersonRequestType'>
         <xs:annotation>
             <xs:documentation xml:lang='sv'>
-                Denna tjänst returnerar frikortstatus för efterfrågad person och korttyp. De transaktioner som tillhör kortet ingår ej i returvärdet utan enbart ett totalbelopp för alla frikortsgrundande transaktioner som gjorts för kortet.
+                Denna tjänst returnerar frikortstatus för efterfrågad person och korttyp. De transaktioner som tillhör kortet ingår ej i returvärdet utan enbart belopp kvar till frikort. 
+                Belopp kvar till frikort kan skilja sig beroende på vald huvudman och dess beloppsgräns för frikort.
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
+            <xs:element name="CarePrincipalId" type="efrikort:HsaId"/>
             <xs:element name="PersonId" type="efrikort:PersonIdValue"/>
-            <xs:element name="CardNature" type="efrikort:CardNatureType"/>
+            <xs:element name="CardTypeId" type="efrikort:CardTypeId"/>
             <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
         </xs:sequence>
     </xs:complexType>
@@ -48,11 +52,12 @@
     <xs:complexType name='GetCardForPersonResponseType'>
         <xs:annotation>
             <xs:documentation xml:lang='sv'>
-                Denna tjänst returnerar frikortstatus för efterfrågad person och korttyp. De transaktioner som tillhör kortet ingår ej i returvärdet utan enbart ett totalbelopp för alla frikortsgrundande transaktioner som gjorts för kortet.
+                Denna tjänst returnerar frikortstatus för efterfrågad person och korttyp. De transaktioner som tillhör kortet ingår ej i returvärdet utan enbart belopp kvar till frikort. 
+                Belopp kvar till frikort kan skilja sig beroende på vald huvudman och dess beloppsgräns för frikort.
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="GetCardForPersonResultType" type="efrikort:GetCardForPersonResultType"/>
+            <xs:element name="GetCardForPersonResultType" type="efrikortriv:GetCardForPersonResultType"/>
             <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
         </xs:sequence>
     </xs:complexType>

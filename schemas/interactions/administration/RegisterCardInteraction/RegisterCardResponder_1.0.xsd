@@ -19,12 +19,14 @@
  -->
 <xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema' 
     xmlns:tns='urn:com:logica:se:healthcare:efrikort:administration:RegisterCardResponder:1'                
+    xmlns:efrikortriv='urn:com:logica:se:healthcare:efrikort:riv:1'
     xmlns:efrikort='urn:com:logica:se:healthcare:efrikort:1'
     targetNamespace='urn:com:logica:se:healthcare:efrikort:administration:RegisterCardResponder:1'
     elementFormDefault='qualified'
     attributeFormDefault='unqualified'
     version='1.0'>
 
+    <xs:import schemaLocation='../../../core_components/ehr_efrikortriv_1.0.xsd' namespace='urn:com:logica:se:healthcare:efrikort:riv:1' />
     <xs:import schemaLocation='../../../core_components/ehr_efrikort_1.0.xsd' namespace='urn:com:logica:se:healthcare:efrikort:1' />
 
 
@@ -33,18 +35,20 @@
     <xs:complexType name='RegisterCardRequestType'>
         <xs:annotation>
             <xs:documentation xml:lang='sv'>
-                Denna tjänst används för att registrera ett frikort utan transaktioner. Tjänsten används för både myndiga och omyndiga personer. I de fall en omyndig person anges måste även målsman anges.
-                Kortet kommer per automatik få utfärdad frikortsstatus.
+                Denna tjänst används för att registrera ett frikort utan transaktioner.
+                Kortet kommer per automatik få frikortsstatus preliminärt.
+                När frikortet har registrerats, registreras även patientens samtycke till att använda tjänsten.
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
+            <xs:element name="CarePrincipalId" type="efrikort:HsaId"/>
             <xs:element name="PersonId" type="efrikort:PersonIdValue"/>
-            <xs:element name="CardNature" type="efrikort:CardNatureType"/>
-            <xs:element name="LimitReachedDate" type="xs:dateTime"/>
-            <xs:element name="EndDate" type="xs:dateTime"/>
+            <xs:element name="CardTypeId" type="efrikort:CardTypeId"/>
+            <xs:element name="LimitReachedDate" type="xs:date"/>
+            <xs:element name="EndDate" type="xs:date"/>
             <xs:element name="CardId" type="efrikort:CardId" minOccurs="0"/>
-            <xs:element name="GuardianId" type="efrikort:PersonIdValue" minOccurs="0"/>
             <xs:element name="ExtendExisting" type="xs:boolean"/>
+            <xs:element name="CardReason" type="efrikort:CardRegistrationReasonType"/>
             <xs:element name="Actor" type="efrikort:ActorType"/>
             <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
         </xs:sequence>
@@ -55,12 +59,13 @@
     <xs:complexType name='RegisterCardResponseType'>
         <xs:annotation>
             <xs:documentation xml:lang='sv'>
-                Denna tjänst används för att registrera ett frikort utan transaktioner. Tjänsten används för både myndiga och omyndiga personer. I de fall en omyndig person anges måste även målsman anges.
-                Kortet kommer per automatik få utfärdad frikortsstatus.
+                Denna tjänst används för att registrera ett frikort utan transaktioner.
+                Kortet kommer per automatik få frikortsstatus preliminärt.
+                När frikortet har registrerats, registreras även patientens samtycke till att använda tjänsten.
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="RegisterCardResultType" type="efrikort:RegisterCardResultType"/>
+            <xs:element name="RegisterCardResultType" type="efrikortriv:RegisterCardResultType"/>
             <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
         </xs:sequence>
     </xs:complexType>

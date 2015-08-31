@@ -19,12 +19,14 @@
  -->
 <xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema' 
     xmlns:tns='urn:com:logica:se:healthcare:efrikort:administration:RegisterTransactionResponder:1'                
+    xmlns:efrikortriv='urn:com:logica:se:healthcare:efrikort:riv:1'
     xmlns:efrikort='urn:com:logica:se:healthcare:efrikort:1'
     targetNamespace='urn:com:logica:se:healthcare:efrikort:administration:RegisterTransactionResponder:1'
     elementFormDefault='qualified'
     attributeFormDefault='unqualified'
     version='1.0'>
 
+    <xs:import schemaLocation='../../../core_components/ehr_efrikortriv_1.0.xsd' namespace='urn:com:logica:se:healthcare:efrikort:riv:1' />
     <xs:import schemaLocation='../../../core_components/ehr_efrikort_1.0.xsd' namespace='urn:com:logica:se:healthcare:efrikort:1' />
 
 
@@ -33,15 +35,19 @@
     <xs:complexType name='RegisterTransactionRequestType'>
         <xs:annotation>
             <xs:documentation xml:lang='sv'>
-                Denna tjänst används för att registrera en betalning (transaktion). Tjänsten används för både myndiga och omyndiga personer. I de fall en omyndig person anges måste även målsman anges.
+                Denna tjänst används för att registrera en betalning (transaktion). 
+                När transaktionen har registrerats, registreras även patientens samtycke till att använda tjänsten.
+                ID för vårdenhet där transaktionen gjordes, samt aktörens vårdenhet ska i normalfallet alltid anges. Anledningen att det är optionellt i kontraktet är för att man ska kunna efterregistrera transaktioner där man kan sakna denna uppgift.
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="CardNature" type="efrikort:CardNatureType"/>
+            <xs:element name="CarePrincipalId" type="efrikort:HsaId"/>
+            <xs:element name="CareProviderId" type="efrikort:HsaId"/>
+            <xs:element name="CareUnitId" type="efrikort:HsaId" minOccurs="0"/>
+            <xs:element name="CardTypeId" type="efrikort:CardTypeId"/>
             <xs:element name="PersonId" type="efrikort:PersonIdValue"/>
-            <xs:element name="GuardianId" type="efrikort:PersonIdValue" minOccurs="0"/>
-            <xs:element name="TransactionDate" type="xs:dateTime" minOccurs="0"/>
-            <xs:element name="PaymentStatus" type="efrikort:PaymentStatusType"/>
+            <xs:element name="TransactionDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="RegistrationDateTime" type="xs:dateTime" minOccurs="0"/>
             <xs:element name="Amount" type="xs:double"/>
             <xs:element name="Actor" type="efrikort:ActorType"/>
             <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
@@ -53,11 +59,13 @@
     <xs:complexType name='RegisterTransactionResponseType'>
         <xs:annotation>
             <xs:documentation xml:lang='sv'>
-                Denna tjänst används för att registrera en betalning (transaktion). Tjänsten används för både myndiga och omyndiga personer. I de fall en omyndig person anges måste även målsman anges.
+                Denna tjänst används för att registrera en betalning (transaktion). 
+                När transaktionen har registrerats, registreras även patientens samtycke till att använda tjänsten.
+                ID för vårdenhet där transaktionen gjordes, samt aktörens vårdenhet ska i normalfallet alltid anges. Anledningen att det är optionellt i kontraktet är för att man ska kunna efterregistrera transaktioner där man kan sakna denna uppgift.
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="RegisterTransactionResultType" type="efrikort:RegisterTransactionResultType"/>
+            <xs:element name="RegisterTransactionResultType" type="efrikortriv:RegisterTransactionResultType"/>
             <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
         </xs:sequence>
     </xs:complexType>

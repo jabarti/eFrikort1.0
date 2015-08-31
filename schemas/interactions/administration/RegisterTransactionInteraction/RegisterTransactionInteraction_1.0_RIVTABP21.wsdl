@@ -29,7 +29,9 @@
     <wsdl:documentation xml:lang='sv'>
          Tjänsteinteraktionens namn: RegisterTransaction
          Beskrivning: 
-           Denna tjänst används för att registrera en betalning (transaktion). Tjänsten används för både myndiga och omyndiga personer. I de fall en omyndig person anges måste även målsman anges.
+           Denna tjänst används för att registrera en betalning (transaktion). 
+           När transaktionen har registrerats, registreras även patientens samtycke till att använda tjänsten.
+           ID för vårdenhet där transaktionen gjordes, samt aktörens vårdenhet ska i normalfallet alltid anges. Anledningen att det är optionellt i kontraktet är för att man ska kunna efterregistrera transaktioner där man kan sakna denna uppgift.
          Revisioner: 
          Tjänstedomän: efrikort:administration
          Tjänsteinteraktionstyp: Fråga-Svar

@@ -29,7 +29,8 @@
     <wsdl:documentation xml:lang='sv'>
          Tjänsteinteraktionens namn: GetCardForPerson
          Beskrivning: 
-           Denna tjänst returnerar frikortstatus för efterfrågad person och korttyp. De transaktioner som tillhör kortet ingår ej i returvärdet utan enbart ett totalbelopp för alla frikortsgrundande transaktioner som gjorts för kortet.
+           Denna tjänst returnerar frikortstatus för efterfrågad person och korttyp. De transaktioner som tillhör kortet ingår ej i returvärdet utan enbart belopp kvar till frikort. 
+           Belopp kvar till frikort kan skilja sig beroende på vald huvudman och dess beloppsgräns för frikort.
          Revisioner: 
          Tjänstedomän: efrikort:querying
          Tjänsteinteraktionstyp: Fråga-Svar

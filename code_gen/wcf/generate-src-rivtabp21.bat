@@ -19,7 +19,7 @@
 	@REM specific language governing permissions and limitations
 	@REM under the License.
 	@REM ---------------------------------------------------------------------------------
-	CD ..
+	CD ..\..
 	
 	SET SCHEMADIR=schemas
 	
@@ -29,31 +29,60 @@ SET X0=%SCHEMADIR%\interactions\DeleteCardInteraction\*.xsd
 SET W1=%SCHEMADIR%\interactions\administration\DeleteTransactionInteraction\DeleteTransactionInteraction_1.0_RIVTABP21.wsdl
 SET X1=%SCHEMADIR%\interactions\DeleteTransactionInteraction\*.xsd
 
-SET W2=%SCHEMADIR%\interactions\administration\RegisterCardInteraction\RegisterCardInteraction_1.0_RIVTABP21.wsdl
-SET X2=%SCHEMADIR%\interactions\RegisterCardInteraction\*.xsd
+SET W2=%SCHEMADIR%\interactions\administration\FinishAccountInteraction\FinishAccountInteraction_1.0_RIVTABP21.wsdl
+SET X2=%SCHEMADIR%\interactions\FinishAccountInteraction\*.xsd
 
-SET W3=%SCHEMADIR%\interactions\administration\RegisterTransactionInteraction\RegisterTransactionInteraction_1.0_RIVTABP21.wsdl
-SET X3=%SCHEMADIR%\interactions\RegisterTransactionInteraction\*.xsd
+SET W3=%SCHEMADIR%\interactions\administration\GroupPersonInteraction\GroupPersonInteraction_1.0_RIVTABP21.wsdl
+SET X3=%SCHEMADIR%\interactions\GroupPersonInteraction\*.xsd
 
-SET W4=%SCHEMADIR%\interactions\administration\UpdatePaymentStatusInteraction\UpdatePaymentStatusInteraction_1.0_RIVTABP21.wsdl
-SET X4=%SCHEMADIR%\interactions\UpdatePaymentStatusInteraction\*.xsd
+SET W4=%SCHEMADIR%\interactions\administration\OrderNewCardInteraction\OrderNewCardInteraction_1.0_RIVTABP21.wsdl
+SET X4=%SCHEMADIR%\interactions\OrderNewCardInteraction\*.xsd
 
-SET W5=%SCHEMADIR%\interactions\querying\GetCardForPersonInteraction\GetCardForPersonInteraction_1.0_RIVTABP21.wsdl
-SET X5=%SCHEMADIR%\interactions\GetCardForPersonInteraction\*.xsd
+SET W5=%SCHEMADIR%\interactions\administration\RegisterCardInteraction\RegisterCardInteraction_1.0_RIVTABP21.wsdl
+SET X5=%SCHEMADIR%\interactions\RegisterCardInteraction\*.xsd
 
-SET W6=%SCHEMADIR%\interactions\querying\GetExtendedCardInteraction\GetExtendedCardInteraction_1.0_RIVTABP21.wsdl
-SET X6=%SCHEMADIR%\interactions\GetExtendedCardInteraction\*.xsd
+SET W6=%SCHEMADIR%\interactions\administration\RegisterTransactionInteraction\RegisterTransactionInteraction_1.0_RIVTABP21.wsdl
+SET X6=%SCHEMADIR%\interactions\RegisterTransactionInteraction\*.xsd
+
+SET W7=%SCHEMADIR%\interactions\administration\UngroupPersonInteraction\UngroupPersonInteraction_1.0_RIVTABP21.wsdl
+SET X7=%SCHEMADIR%\interactions\UngroupPersonInteraction\*.xsd
+
+SET W8=%SCHEMADIR%\interactions\administration\UpdateCardInteraction\UpdateCardInteraction_1.0_RIVTABP21.wsdl
+SET X8=%SCHEMADIR%\interactions\UpdateCardInteraction\*.xsd
+
+SET W9=%SCHEMADIR%\interactions\administration\UpdatePaymentStatusInteraction\UpdatePaymentStatusInteraction_1.0_RIVTABP21.wsdl
+SET X9=%SCHEMADIR%\interactions\UpdatePaymentStatusInteraction\*.xsd
+
+SET W10=%SCHEMADIR%\interactions\administration\UpdateTransactionInteraction\UpdateTransactionInteraction_1.0_RIVTABP21.wsdl
+SET X10=%SCHEMADIR%\interactions\UpdateTransactionInteraction\*.xsd
+
+SET W11=%SCHEMADIR%\interactions\querying\GetCardForPersonInteraction\GetCardForPersonInteraction_1.0_RIVTABP21.wsdl
+SET X11=%SCHEMADIR%\interactions\GetCardForPersonInteraction\*.xsd
+
+SET W12=%SCHEMADIR%\interactions\querying\GetExtendedCardForPersonInteraction\GetExtendedCardForPersonInteraction_1.0_RIVTABP21.wsdl
+SET X12=%SCHEMADIR%\interactions\GetExtendedCardForPersonInteraction\*.xsd
+
+SET W13=%SCHEMADIR%\interactions\querying\GetExtendedCardInteraction\GetExtendedCardInteraction_1.0_RIVTABP21.wsdl
+SET X13=%SCHEMADIR%\interactions\GetExtendedCardInteraction\*.xsd
+
+SET W14=%SCHEMADIR%\interactions\querying\GetGroupForPersonInteraction\GetGroupForPersonInteraction_1.0_RIVTABP21.wsdl
+SET X14=%SCHEMADIR%\interactions\GetGroupForPersonInteraction\*.xsd
 
 SET XCORE=%SCHEMADIR%\core_components\*.xsd
 
-SET SCHEMAS=%XCORE% %W0% %X0% %W1% %X1% %W2% %X2% %W3% %X3% %W4% %X4% %W5% %X5% %W6% %X6% 
+SET SCHEMAS=%XCORE% %W0% %X0% %W1% %X1% %W2% %X2% %W3% %X3% %W4% %X4% %W5% %X5% %W6% %X6% %W7% %X7% %W8% %X8% %W9% %X9% %W10% %X10% %W11% %X11% %W12% %X12% %W13% %X13% %W14% %X14% 
 
-SET OUTFILE=/out:wcf\generated-src\HealthcareEFrikortInteractions.cs
-SET APPCONFIG=/config:wcf\generated-src\app.config
-SET NAMESPACE=/namespace:*,Riv.Healthcare.EFrikort.Schemas.v1
+SET OUTFILE=code_gen\wcf\generated-src\Riv-cgi.healthcare.efrikortInteractions.cs
+SET APPCONFIG=/config:code_gen\wcf\generated-src\app.config
+SET NAMESPACE=/namespace:*,Riv.Riv-cgi.healthcare.efrikort.Schemas.v1
 SET SVCUTIL="svcutil.exe"
-%SVCUTIL% /language:cs %OUTFILE% %APPCONFIG% %NAMESPACE% %SCHEMAS%
+%SVCUTIL% /language:cs /syncOnly /out:%OUTFILE% %APPCONFIG% %NAMESPACE% %SCHEMAS%
 
-CD wcf
-ECHO Generating Service contract .Net Binding interfaces and classes for healthcare:eFrikort Release 1
+ECHO Adding #pragma warning disable 1591 to %OUTFILE%
+ECHO #pragma warning disable 1591 > %OUTFILE%.tmp
+TYPE %OUTFILE% >> %OUTFILE%.tmp
+MOVE /Y %OUTFILE%.tmp %OUTFILE%
+
+CD code_gen\wcf
+ECHO Generating Service contract .Net Binding interfaces and classes for riv-cgi.healthcare.efrikort Release 1
 ECHO I DotNetprojektet ska du ta lagga till referens till System.ServiceModel

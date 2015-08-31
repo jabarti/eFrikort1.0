@@ -19,12 +19,14 @@
  -->
 <xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema' 
     xmlns:tns='urn:com:logica:se:healthcare:efrikort:administration:DeleteTransactionResponder:1'                
+    xmlns:efrikortriv='urn:com:logica:se:healthcare:efrikort:riv:1'
     xmlns:efrikort='urn:com:logica:se:healthcare:efrikort:1'
     targetNamespace='urn:com:logica:se:healthcare:efrikort:administration:DeleteTransactionResponder:1'
     elementFormDefault='qualified'
     attributeFormDefault='unqualified'
     version='1.0'>
 
+    <xs:import schemaLocation='../../../core_components/ehr_efrikortriv_1.0.xsd' namespace='urn:com:logica:se:healthcare:efrikort:riv:1' />
     <xs:import schemaLocation='../../../core_components/ehr_efrikort_1.0.xsd' namespace='urn:com:logica:se:healthcare:efrikort:1' />
 
 
@@ -37,9 +39,9 @@
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
+            <xs:element name="CarePrincipalId" type="efrikort:HsaId"/>
             <xs:element name="TransactionId" type="efrikort:Id"/>
             <xs:element name="DeleteStatus" type="efrikort:DeleteStatusType"/>
-            <xs:element name="ReCalculateCard" type="xs:boolean" minOccurs="0"/>
             <xs:element name="Actor" type="efrikort:ActorType"/>
             <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
         </xs:sequence>
@@ -54,7 +56,7 @@
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="ResultType" type="efrikort:ResultType"/>
+            <xs:element name="ResultType" type="efrikortriv:ResultType"/>
             <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
         </xs:sequence>
     </xs:complexType>

@@ -18,11 +18,19 @@
 	<jxb:bindings schemaLocation = "DeleteCardResponder_1.0.xsd">
 		<jxb:bindings node = "/xs:schema">
 	   		<jxb:schemaBindings>
-	  			<jxb:package name="com.logica.se.healthcare.efrikort.administration.ws.deletecard" />
+	  			<jxb:package name="com.logica.se.healthcare.efrikort.riv.administration.ws.deletecard" />
 			</jxb:schemaBindings>
 		</jxb:bindings>
 	</jxb:bindings>
 	
+	
+	<jxb:bindings schemaLocation = "../../../core_components/ehr_efrikortriv_1.0.xsd">
+		<jxb:bindings node = "/xs:schema">
+	   		<jxb:schemaBindings>
+	  			<jxb:package name="com.logica.se.healthcare.efrikort.riv.ws.types" />
+			</jxb:schemaBindings>
+		</jxb:bindings>
+	</jxb:bindings>
 	
 	<jxb:bindings schemaLocation = "../../../core_components/ehr_efrikort_1.0.xsd">
 		<jxb:bindings node = "/xs:schema">

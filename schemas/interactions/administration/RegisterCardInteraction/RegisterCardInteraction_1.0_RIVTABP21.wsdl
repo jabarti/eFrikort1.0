@@ -29,8 +29,9 @@
     <wsdl:documentation xml:lang='sv'>
          Tjänsteinteraktionens namn: RegisterCard
          Beskrivning: 
-           Denna tjänst används för att registrera ett frikort utan transaktioner. Tjänsten används för både myndiga och omyndiga personer. I de fall en omyndig person anges måste även målsman anges.
-           Kortet kommer per automatik få utfärdad frikortsstatus.
+           Denna tjänst används för att registrera ett frikort utan transaktioner.
+           Kortet kommer per automatik få frikortsstatus preliminärt.
+           När frikortet har registrerats, registreras även patientens samtycke till att använda tjänsten.
          Revisioner: 
          Tjänstedomän: efrikort:administration
          Tjänsteinteraktionstyp: Fråga-Svar

@@ -6,7 +6,7 @@
     xmlns:jxb="http://java.sun.com/xml/ns/jaxb">
 
 	<jaxws:bindings node="/wsdl:definitions">   
-        <jaxws:package name="com.logica.se.healthcare.efrikort.administration.ws.registercard"/>
+        <jaxws:package name="com.logica.se.healthcare.efrikort.riv.administration.ws.registercard"/>
 	</jaxws:bindings>
 	
 	

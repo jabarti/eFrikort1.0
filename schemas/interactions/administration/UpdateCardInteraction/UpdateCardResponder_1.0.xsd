@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements. See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership. Logica licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License. You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied. See the License for the
+ specific language governing permissions and limitations
+ under the License.
+ -->
+<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema' 
+    xmlns:tns='urn:com:logica:se:healthcare:efrikort:administration:UpdateCardResponder:1'                
+    xmlns:efrikortriv='urn:com:logica:se:healthcare:efrikort:riv:1'
+    xmlns:efrikort='urn:com:logica:se:healthcare:efrikort:1'
+    targetNamespace='urn:com:logica:se:healthcare:efrikort:administration:UpdateCardResponder:1'
+    elementFormDefault='qualified'
+    attributeFormDefault='unqualified'
+    version='1.0'>
+
+    <xs:import schemaLocation='../../../core_components/ehr_efrikortriv_1.0.xsd' namespace='urn:com:logica:se:healthcare:efrikort:riv:1' />
+    <xs:import schemaLocation='../../../core_components/ehr_efrikort_1.0.xsd' namespace='urn:com:logica:se:healthcare:efrikort:1' />
+
+
+    <xs:element name='UpdateCardRequest' type='tns:UpdateCardRequestType'/>
+
+    <xs:complexType name='UpdateCardRequestType'>
+        <xs:annotation>
+            <xs:documentation xml:lang='sv'>
+                Denna tjänst används för att ändra ett existerande frikort.
+                Slutgiltiga frikort som har registrerade transaktioner kan ej ändras.
+                För slutgiltiga frikort som har registrerats utan transaktioner kan endast giltighetstiden ändras inom vårdhuvudmannens högkostnadsperiod.
+                För preliminära frikort som har registrerade transaktioner kan enbart identiteten på frikortet (kortnummer) ändras.
+                För preliminära frikort som registrerats utan transaktioner kan alla uppgifter ändras.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="CarePrincipalId" type="efrikort:HsaId"/>
+            <xs:element name="CardSystemId" type="efrikort:Id"/>
+            <xs:element name="CardId" type="efrikort:CardId" minOccurs="0"/>
+            <xs:element name="CardTypeId" type="efrikort:Id" minOccurs="0"/>
+            <xs:element name="StartDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="EndDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="LimitReachedDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="Actor" type="efrikort:ActorType"/>
+            <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name='UpdateCardResponse' type='tns:UpdateCardResponseType'/>
+
+    <xs:complexType name='UpdateCardResponseType'>
+        <xs:annotation>
+            <xs:documentation xml:lang='sv'>
+                Denna tjänst används för att ändra ett existerande frikort.
+                Slutgiltiga frikort som har registrerade transaktioner kan ej ändras.
+                För slutgiltiga frikort som har registrerats utan transaktioner kan endast giltighetstiden ändras inom vårdhuvudmannens högkostnadsperiod.
+                För preliminära frikort som har registrerade transaktioner kan enbart identiteten på frikortet (kortnummer) ändras.
+                För preliminära frikort som registrerats utan transaktioner kan alla uppgifter ändras.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="ResultType" type="efrikortriv:ResultType"/>
+            <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

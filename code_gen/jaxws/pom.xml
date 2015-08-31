@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>se.rivta.tools</groupId>
-  <artifactId>healthcare-eFrikort-schemas</artifactId>
+  <artifactId>riv-cgi.healthcare.efrikort-schemas</artifactId>
   <packaging>jar</packaging>
   <version>1</version>
-  <name>healthcare-eFrikort-schemas</name>
+  <name>riv-cgi.healthcare.efrikort-schemas</name>
   <url>http://maven.apache.org</url>
   <properties>
     <schema.path>${basedir}/../../schemas</schema.path>
@@ -62,6 +62,33 @@
                   </extraargs>
                 </wsdloption>
                 <wsdloption>
+                  <wsdl>${schema.path}\interactions\administration\FinishAccountInteraction\FinishAccountInteraction_1.0_RIVTABP21.wsdl</wsdl>
+                  <extraargs>
+                    <extraarg>-p</extraarg>
+                    <extraarg>http://www.w3.org/2005/08/addressing=org.w3c.addressing.v1</extraarg>
+                    <extraarg>-p</extraarg>
+                    <extraarg>urn:riv:itintegration:registry:1=se.riv.itintegration.registry.v1</extraarg>
+                  </extraargs>
+                </wsdloption>
+                <wsdloption>
+                  <wsdl>${schema.path}\interactions\administration\GroupPersonInteraction\GroupPersonInteraction_1.0_RIVTABP21.wsdl</wsdl>
+                  <extraargs>
+                    <extraarg>-p</extraarg>
+                    <extraarg>http://www.w3.org/2005/08/addressing=org.w3c.addressing.v1</extraarg>
+                    <extraarg>-p</extraarg>
+                    <extraarg>urn:riv:itintegration:registry:1=se.riv.itintegration.registry.v1</extraarg>
+                  </extraargs>
+                </wsdloption>
+                <wsdloption>
+                  <wsdl>${schema.path}\interactions\administration\OrderNewCardInteraction\OrderNewCardInteraction_1.0_RIVTABP21.wsdl</wsdl>
+                  <extraargs>
+                    <extraarg>-p</extraarg>
+                    <extraarg>http://www.w3.org/2005/08/addressing=org.w3c.addressing.v1</extraarg>
+                    <extraarg>-p</extraarg>
+                    <extraarg>urn:riv:itintegration:registry:1=se.riv.itintegration.registry.v1</extraarg>
+                  </extraargs>
+                </wsdloption>
+                <wsdloption>
                   <wsdl>${schema.path}\interactions\administration\RegisterCardInteraction\RegisterCardInteraction_1.0_RIVTABP21.wsdl</wsdl>
                   <extraargs>
                     <extraarg>-p</extraarg>
@@ -80,7 +107,34 @@
                   </extraargs>
                 </wsdloption>
                 <wsdloption>
+                  <wsdl>${schema.path}\interactions\administration\UngroupPersonInteraction\UngroupPersonInteraction_1.0_RIVTABP21.wsdl</wsdl>
+                  <extraargs>
+                    <extraarg>-p</extraarg>
+                    <extraarg>http://www.w3.org/2005/08/addressing=org.w3c.addressing.v1</extraarg>
+                    <extraarg>-p</extraarg>
+                    <extraarg>urn:riv:itintegration:registry:1=se.riv.itintegration.registry.v1</extraarg>
+                  </extraargs>
+                </wsdloption>
+                <wsdloption>
+                  <wsdl>${schema.path}\interactions\administration\UpdateCardInteraction\UpdateCardInteraction_1.0_RIVTABP21.wsdl</wsdl>
+                  <extraargs>
+                    <extraarg>-p</extraarg>
+                    <extraarg>http://www.w3.org/2005/08/addressing=org.w3c.addressing.v1</extraarg>
+                    <extraarg>-p</extraarg>
+                    <extraarg>urn:riv:itintegration:registry:1=se.riv.itintegration.registry.v1</extraarg>
+                  </extraargs>
+                </wsdloption>
+                <wsdloption>
                   <wsdl>${schema.path}\interactions\administration\UpdatePaymentStatusInteraction\UpdatePaymentStatusInteraction_1.0_RIVTABP21.wsdl</wsdl>
+                  <extraargs>
+                    <extraarg>-p</extraarg>
+                    <extraarg>http://www.w3.org/2005/08/addressing=org.w3c.addressing.v1</extraarg>
+                    <extraarg>-p</extraarg>
+                    <extraarg>urn:riv:itintegration:registry:1=se.riv.itintegration.registry.v1</extraarg>
+                  </extraargs>
+                </wsdloption>
+                <wsdloption>
+                  <wsdl>${schema.path}\interactions\administration\UpdateTransactionInteraction\UpdateTransactionInteraction_1.0_RIVTABP21.wsdl</wsdl>
                   <extraargs>
                     <extraarg>-p</extraarg>
                     <extraarg>http://www.w3.org/2005/08/addressing=org.w3c.addressing.v1</extraarg>
@@ -98,7 +152,25 @@
                   </extraargs>
                 </wsdloption>
                 <wsdloption>
+                  <wsdl>${schema.path}\interactions\querying\GetExtendedCardForPersonInteraction\GetExtendedCardForPersonInteraction_1.0_RIVTABP21.wsdl</wsdl>
+                  <extraargs>
+                    <extraarg>-p</extraarg>
+                    <extraarg>http://www.w3.org/2005/08/addressing=org.w3c.addressing.v1</extraarg>
+                    <extraarg>-p</extraarg>
+                    <extraarg>urn:riv:itintegration:registry:1=se.riv.itintegration.registry.v1</extraarg>
+                  </extraargs>
+                </wsdloption>
+                <wsdloption>
                   <wsdl>${schema.path}\interactions\querying\GetExtendedCardInteraction\GetExtendedCardInteraction_1.0_RIVTABP21.wsdl</wsdl>
+                  <extraargs>
+                    <extraarg>-p</extraarg>
+                    <extraarg>http://www.w3.org/2005/08/addressing=org.w3c.addressing.v1</extraarg>
+                    <extraarg>-p</extraarg>
+                    <extraarg>urn:riv:itintegration:registry:1=se.riv.itintegration.registry.v1</extraarg>
+                  </extraargs>
+                </wsdloption>
+                <wsdloption>
+                  <wsdl>${schema.path}\interactions\querying\GetGroupForPersonInteraction\GetGroupForPersonInteraction_1.0_RIVTABP21.wsdl</wsdl>
                   <extraargs>
                     <extraarg>-p</extraarg>
                     <extraarg>http://www.w3.org/2005/08/addressing=org.w3c.addressing.v1</extraarg>
