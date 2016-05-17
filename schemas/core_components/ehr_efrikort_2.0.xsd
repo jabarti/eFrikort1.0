@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements. See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership. Logica licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License. You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied. See the License for the
+ specific language governing permissions and limitations
+ under the License.
+ -->
+<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema' 
+    xmlns:tns='urn:com:logica:se:healthcare:efrikort:2'
+    targetNamespace='urn:com:logica:se:healthcare:efrikort:2'
+
+    elementFormDefault='qualified'
+    attributeFormDefault='unqualified' 
+    version='2.0'>
+
+    <xs:annotation>
+        <xs:documentation xml:lang='sv'>
+        </xs:documentation>
+    </xs:annotation>
+
+
+
+
+
+    <xs:simpleType name="DeleteStatusType">
+        <xs:annotation>
+            <xs:documentation xml:lang='sv'>
+                Då en transaktion raderas kräver systemet en orsakskod.
+                Exempel på orsak är att aktör angett en felaktig transaktion eller att en patient valt att få en transaktion makulerad för att ordna till en snefördelning av transaktioner över en frikortsperiod.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="TRANSACTION_INCORRECT">
+                <xs:annotation>
+                    <xs:documentation xml:lang='sv'>
+                        Transaktion felaktig registrerad
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="TRANSACTION_REMOVED_BY_PATIENT_REQUEST">
+                <xs:annotation>
+                    <xs:documentation xml:lang='sv'>
+                        Borttag av transaktion begärd av patient
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="CardRegistrationReasonType">
+        <xs:annotation>
+            <xs:documentation xml:lang='sv'>
+                Då ett frikort registreras utan transaktioner kräver systemet en orsakskod.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="VALID_CARD">
+                <xs:annotation>
+                    <xs:documentation xml:lang='sv'>
+                        Patient har redan frikort hos annan Vårdhuvudman. Detta val kräver att nuvarande frikortsnummer anges.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="MEDICAL">
+                <xs:annotation>
+                    <xs:documentation xml:lang='sv'>
+                        Patient skall ha frikort av medicinska skäl. Nytt frikortsnummer skapas av tjänsten.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="CardStatusType">
+        <xs:annotation>
+            <xs:documentation xml:lang='sv'>
+                Värdet anger nuvarande status för ett frikort.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BELOW_LIMIT">
+                <xs:annotation>
+                    <xs:documentation xml:lang='sv'>
+                        Frikortstatus ej uppnådd
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="PRELIMINARY">
+                <xs:annotation>
+                    <xs:documentation xml:lang='sv'>
+                        Frikort i preliminär status
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="FINAL">
+                <xs:annotation>
+                    <xs:documentation xml:lang='sv'>
+                        Frikortstatus uppnådd
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="EXPIRED">
+                <xs:annotation>
+                    <xs:documentation xml:lang='sv'>
+                        Frikortet har utgått
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="Id">
+        <xs:annotation>
+            <xs:documentation xml:lang='sv'>
+                Datatyp som representerar ett unikt identifikationsnummer enligt formatet för UUID (Universally Unique Identifier).
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="36"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="CardTypeId">
+        <xs:annotation>
+            <xs:documentation xml:lang='sv'>
+                Datatyp som representerar ett unikt id för frikortstyp
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="36"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="HsaId">
+        <xs:annotation>
+            <xs:documentation xml:lang='sv'>
+                Datatyp som representerar det unika nummer som identifierar en anställd, uppdragstagare, strukturenhet eller en HCC funktion (HSA-id).
+                Specificerat enligt HSA-schema tjänsteträdet version 3.9.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="32"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="PersonIdValue">
+        <xs:annotation>
+            <xs:documentation xml:lang='sv'>
+                Typen PersonIdValue är en sträng på 12 eller 13 tecken som representerar en person. Vanligtvis ett personnummer, men även andra typer av 12 tecken identifierare såsom samordningsnummer och reservnummer (kan vara 13-tecken) kan användas. Formatet på texten skall vara enbart de siffror (samt eventuell bokstav) som ingår utan eventuell &amp;quot;-&amp;quot; eller &amp;quot;+&amp;quot;.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="13"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="CardId">
+        <xs:annotation>
+            <xs:documentation xml:lang='sv'>
+                Datatyp som representerar ett frikortsnummer. Detta är ej unikt utan enbart en läsbar referens till ett frikort. Flera kort kan således ha samma frikortsnummer.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="20"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:complexType name="PersonType">
+        <xs:annotation>
+            <xs:documentation xml:lang='sv'>
+                Typ som representerar ett id för en person eller patient, och kan vara ett personnummer, samordningsnummer eller reservnummer.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Id" type="tns:PersonIdValue"/>
+            <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="ActorType">
+        <xs:annotation>
+            <xs:documentation xml:lang='sv'>
+                En Actor är någon som utför något i systemet.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="EmployeeId" type="tns:HsaId"/>
+            <xs:element name="CareProviderId" type="tns:HsaId"/>
+            <xs:element name="CareUnitId" type="tns:HsaId" minOccurs="0"/>
+            <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="TransactionType">
+        <xs:annotation>
+            <xs:documentation xml:lang='sv'>
+                En transaktion representerar en patientavgift.
+                En transaktion knyts alltid till ett frikort.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="TransactionId" type="tns:Id"/>
+            <xs:element name="PersonId" type="tns:PersonIdValue"/>
+            <xs:element name="Amount" type="xs:double"/>
+            <xs:element name="TransactionDate" type="xs:date"/>
+            <xs:element name="RegistrationDateTime" type="xs:dateTime"/>
+            <xs:element name="CarePrincipalId" type="tns:HsaId"/>
+            <xs:element name="CareProviderId" type="tns:HsaId"/>
+            <xs:element name="CareUnitId" type="tns:HsaId" minOccurs="0"/>
+            <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="CardTypeType">
+        <xs:annotation>
+            <xs:documentation xml:lang='sv'>
+                Respektive vårdhuvudman kan själv välja vilken/vilka korttyper som ska användas för de (och även skapa nya korttyper).
+                Följande korttyper finns tillgängliga initialt för respektive vårdhuvudman:
+                CardTypeId - Namn
+                CARE_VISIT - Öppen sjukvård
+                TECHNICAL_AID - Tekniska hjälpmedel
+                TRANSPORTATION - Sjukresor
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Id" type="tns:CardTypeId"/>
+            <xs:element name="Name" type="xs:string"/>
+            <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="CardType">
+        <xs:annotation>
+            <xs:documentation xml:lang='sv'>
+                Information om ett specifikt Frikort, men utan dess ingående transaktioner.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="CardSystemId" type="tns:Id"/>
+            <xs:element name="CardType" type="tns:CardTypeType"/>
+            <xs:element name="Persons" type="tns:PersonType" maxOccurs="unbounded"/>
+            <xs:element name="StartDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="LimitReachedDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="FinalCardDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="EndDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="CurrentAmount" type="xs:double"/>
+            <xs:element name="AmountToLimit" type="xs:double"/>
+            <xs:element name="CardId" type="tns:CardId" minOccurs="0"/>
+            <xs:element name="CarePrincipalId" type="tns:HsaId" minOccurs="0"/>
+            <xs:element name="Status" type="tns:CardStatusType"/>
+            <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="ExtendedCardType">
+        <xs:annotation>
+            <xs:documentation xml:lang='sv'>
+                Datatypen utökar datatypen Card.
+                Ett frikort tillhör en person (kan vara flera i fallet med barn eller reservnummer).
+                Till varje frikort hör 1 eller flera transaktioner som tillsammans avgör om frikortsbelopp uppnåtts eller ej.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Card" type="tns:CardType"/>
+            <xs:element name="Transactions" type="tns:TransactionType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="ExpiredTransactions" type="tns:TransactionType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

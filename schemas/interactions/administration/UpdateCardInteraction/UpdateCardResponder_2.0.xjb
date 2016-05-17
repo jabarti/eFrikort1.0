@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jxb:bindings version="1.0"
+  xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<!--
+<jxb:globalBindings
+        fixedAttributeAsConstantProperty="true"
+        collectionType="java.util.Vector"
+        typesafeEnumBase="xsd:NCName"
+        choiceContentProperty="false"
+        typesafeEnumMemberName="generateError"
+        bindingStyle="elementBinding"
+        enableFailFastCheck="false"   
+        generateIsSetMethod="false"
+        underscoreBinding="asCharInWord"/> 
+-->
+	<jxb:bindings schemaLocation = "UpdateCardResponder_2.0.xsd">
+		<jxb:bindings node = "/xs:schema">
+	   		<jxb:schemaBindings>
+	  			<jxb:package name="com.logica.se.healthcare.efrikort.riv.v2.administration.ws.updatecard" />
+			</jxb:schemaBindings>
+		</jxb:bindings>
+	</jxb:bindings>
+	
+	
+	<jxb:bindings schemaLocation = "../../../core_components/ehr_efrikortriv_2.0.xsd">
+		<jxb:bindings node = "/xs:schema">
+	   		<jxb:schemaBindings>
+	  			<jxb:package name="com.logica.se.healthcare.efrikort.riv.v2.ws.types" />
+			</jxb:schemaBindings>
+		</jxb:bindings>
+	</jxb:bindings>
+	
+	<jxb:bindings schemaLocation = "../../../core_components/ehr_efrikort_2.0.xsd">
+		<jxb:bindings node = "/xs:schema">
+	   		<jxb:schemaBindings>
+	  			<jxb:package name="com.logica.se.healthcare.efrikort.ws.v2.types" />
+			</jxb:schemaBindings>
+		</jxb:bindings>
+	</jxb:bindings>
+
+</jxb:bindings>

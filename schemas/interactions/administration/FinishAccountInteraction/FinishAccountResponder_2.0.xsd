@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements. See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership. Logica licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License. You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied. See the License for the
+ specific language governing permissions and limitations
+ under the License.
+ -->
+<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema' 
+    xmlns:tns='urn:com:logica:se:healthcare:efrikort:administration:FinishAccountResponder:2'                
+    xmlns:efrikortriv='urn:com:logica:se:healthcare:efrikort:riv:2'
+    xmlns:efrikort='urn:com:logica:se:healthcare:efrikort:2'
+    targetNamespace='urn:com:logica:se:healthcare:efrikort:administration:FinishAccountResponder:2'
+    elementFormDefault='qualified'
+    attributeFormDefault='unqualified'
+    version='2.0'>
+
+    <xs:import schemaLocation='../../../core_components/ehr_efrikortriv_2.0.xsd' namespace='urn:com:logica:se:healthcare:efrikort:riv:2' />
+    <xs:import schemaLocation='../../../core_components/ehr_efrikort_2.0.xsd' namespace='urn:com:logica:se:healthcare:efrikort:2' />
+
+
+    <xs:element name='FinishAccountRequest' type='tns:FinishAccountRequestType'/>
+
+    <xs:complexType name='FinishAccountRequestType'>
+        <xs:annotation>
+            <xs:documentation xml:lang='sv'>
+                Denna tjänst används när en patient vill avsluta sitt konto i eFrikortstjänsten.
+                För personnummer som har reservnummer grupperade till sig avser utträdet även de grupperade reservnumren. 
+                För grupperat barn avser utträdet endast angivet barn, dvs övriga barn kvarstår i gruppen.
+                Utträde medför att uppgifter som avser berörda personidentiteter inte kan nås.
+                Utträde görs enbart för angiven frikortstyp.
+                Utträde görs för alla vårdhuvudmän.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="CarePrincipalId" type="efrikort:HsaId"/>
+            <xs:element name="PersonId" type="efrikort:PersonIdValue"/>
+            <xs:element name="CardTypeId" type="efrikort:CardTypeId"/>
+            <xs:element name="Actor" type="efrikort:ActorType"/>
+            <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name='FinishAccountResponse' type='tns:FinishAccountResponseType'/>
+
+    <xs:complexType name='FinishAccountResponseType'>
+        <xs:annotation>
+            <xs:documentation xml:lang='sv'>
+                Denna tjänst används när en patient vill avsluta sitt konto i eFrikortstjänsten.
+                För personnummer som har reservnummer grupperade till sig avser utträdet även de grupperade reservnumren. 
+                För grupperat barn avser utträdet endast angivet barn, dvs övriga barn kvarstår i gruppen.
+                Utträde medför att uppgifter som avser berörda personidentiteter inte kan nås.
+                Utträde görs enbart för angiven frikortstyp.
+                Utträde görs för alla vårdhuvudmän.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="ResultType" type="efrikortriv:ResultType"/>
+            <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

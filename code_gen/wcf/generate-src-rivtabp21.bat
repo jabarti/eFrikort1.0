@@ -23,43 +23,43 @@
 	
 	SET SCHEMADIR=schemas
 	
-	SET W0=%SCHEMADIR%\interactions\administration\DeleteCardInteraction\DeleteCardInteraction_1.0_RIVTABP21.wsdl
+	SET W0=%SCHEMADIR%\interactions\administration\DeleteCardInteraction\DeleteCardInteraction_2.0_RIVTABP21.wsdl
 SET X0=%SCHEMADIR%\interactions\administration\DeleteCardInteraction\*.xsd
 
-SET W1=%SCHEMADIR%\interactions\administration\DeleteTransactionInteraction\DeleteTransactionInteraction_1.0_RIVTABP21.wsdl
+SET W1=%SCHEMADIR%\interactions\administration\DeleteTransactionInteraction\DeleteTransactionInteraction_2.0_RIVTABP21.wsdl
 SET X1=%SCHEMADIR%\interactions\administration\DeleteTransactionInteraction\*.xsd
 
-SET W2=%SCHEMADIR%\interactions\administration\FinishAccountInteraction\FinishAccountInteraction_1.0_RIVTABP21.wsdl
+SET W2=%SCHEMADIR%\interactions\administration\FinishAccountInteraction\FinishAccountInteraction_2.0_RIVTABP21.wsdl
 SET X2=%SCHEMADIR%\interactions\administration\FinishAccountInteraction\*.xsd
 
-SET W3=%SCHEMADIR%\interactions\administration\GroupPersonInteraction\GroupPersonInteraction_1.0_RIVTABP21.wsdl
+SET W3=%SCHEMADIR%\interactions\administration\GroupPersonInteraction\GroupPersonInteraction_2.0_RIVTABP21.wsdl
 SET X3=%SCHEMADIR%\interactions\administration\GroupPersonInteraction\*.xsd
 
-SET W4=%SCHEMADIR%\interactions\administration\OrderNewCardInteraction\OrderNewCardInteraction_1.0_RIVTABP21.wsdl
+SET W4=%SCHEMADIR%\interactions\administration\OrderNewCardInteraction\OrderNewCardInteraction_2.0_RIVTABP21.wsdl
 SET X4=%SCHEMADIR%\interactions\administration\OrderNewCardInteraction\*.xsd
 
-SET W5=%SCHEMADIR%\interactions\administration\RegisterCardInteraction\RegisterCardInteraction_1.0_RIVTABP21.wsdl
+SET W5=%SCHEMADIR%\interactions\administration\RegisterCardInteraction\RegisterCardInteraction_2.0_RIVTABP21.wsdl
 SET X5=%SCHEMADIR%\interactions\administration\RegisterCardInteraction\*.xsd
 
-SET W6=%SCHEMADIR%\interactions\administration\RegisterTransactionInteraction\RegisterTransactionInteraction_1.0_RIVTABP21.wsdl
+SET W6=%SCHEMADIR%\interactions\administration\RegisterTransactionInteraction\RegisterTransactionInteraction_2.0_RIVTABP21.wsdl
 SET X6=%SCHEMADIR%\interactions\administration\RegisterTransactionInteraction\*.xsd
 
-SET W7=%SCHEMADIR%\interactions\administration\UngroupPersonInteraction\UngroupPersonInteraction_1.0_RIVTABP21.wsdl
+SET W7=%SCHEMADIR%\interactions\administration\UngroupPersonInteraction\UngroupPersonInteraction_2.0_RIVTABP21.wsdl
 SET X7=%SCHEMADIR%\interactions\administration\UngroupPersonInteraction\*.xsd
 
-SET W8=%SCHEMADIR%\interactions\administration\UpdateCardInteraction\UpdateCardInteraction_1.0_RIVTABP21.wsdl
+SET W8=%SCHEMADIR%\interactions\administration\UpdateCardInteraction\UpdateCardInteraction_2.0_RIVTABP21.wsdl
 SET X8=%SCHEMADIR%\interactions\administration\UpdateCardInteraction\*.xsd
 
-SET W9=%SCHEMADIR%\interactions\administration\UpdateTransactionInteraction\UpdateTransactionInteraction_1.0_RIVTABP21.wsdl
+SET W9=%SCHEMADIR%\interactions\administration\UpdateTransactionInteraction\UpdateTransactionInteraction_2.0_RIVTABP21.wsdl
 SET X9=%SCHEMADIR%\interactions\administration\UpdateTransactionInteraction\*.xsd
 
-SET W10=%SCHEMADIR%\interactions\querying\GetCardForPersonInteraction\GetCardForPersonInteraction_1.0_RIVTABP21.wsdl
+SET W10=%SCHEMADIR%\interactions\querying\GetCardForPersonInteraction\GetCardForPersonInteraction_2.0_RIVTABP21.wsdl
 SET X10=%SCHEMADIR%\interactions\querying\GetCardForPersonInteraction\*.xsd
 
-SET W11=%SCHEMADIR%\interactions\querying\GetExtendedCardForPersonInteraction\GetExtendedCardForPersonInteraction_1.0_RIVTABP21.wsdl
+SET W11=%SCHEMADIR%\interactions\querying\GetExtendedCardForPersonInteraction\GetExtendedCardForPersonInteraction_2.0_RIVTABP21.wsdl
 SET X11=%SCHEMADIR%\interactions\querying\GetExtendedCardForPersonInteraction\*.xsd
 
-SET W12=%SCHEMADIR%\interactions\querying\GetGroupForPersonInteraction\GetGroupForPersonInteraction_1.0_RIVTABP21.wsdl
+SET W12=%SCHEMADIR%\interactions\querying\GetGroupForPersonInteraction\GetGroupForPersonInteraction_2.0_RIVTABP21.wsdl
 SET X12=%SCHEMADIR%\interactions\querying\GetGroupForPersonInteraction\*.xsd
 
 SET XCORE=%SCHEMADIR%\core_components\*.xsd
@@ -68,7 +68,7 @@ SET SCHEMAS=%XCORE% %W0% %X0% %W1% %X1% %W2% %X2% %W3% %X3% %W4% %X4% %W5% %X5% 
 
 SET OUTFILE=code_gen\wcf\generated-src\Cgi.healthcare.efrikortInteractions.cs
 SET APPCONFIG=/config:code_gen\wcf\generated-src\app.config
-SET NAMESPACE=/namespace:*,Riv.Cgi.healthcare.efrikort.Schemas.v1
+SET NAMESPACE=/namespace:*,Riv.Cgi.healthcare.efrikort.Schemas.v2
 SET SVCUTIL="svcutil.exe"
 %SVCUTIL% /language:cs /syncOnly /out:%OUTFILE% %APPCONFIG% %NAMESPACE% %SCHEMAS%
 
@@ -78,5 +78,5 @@ TYPE %OUTFILE% >> %OUTFILE%.tmp
 MOVE /Y %OUTFILE%.tmp %OUTFILE%
 
 CD code_gen\wcf
-ECHO Generating Service contract .Net Binding interfaces and classes for cgi.healthcare.efrikort Release 1
+ECHO Generating Service contract .Net Binding interfaces and classes for cgi.healthcare.efrikort Release 2
 ECHO I DotNetprojektet ska du ta lagga till referens till System.ServiceModel
