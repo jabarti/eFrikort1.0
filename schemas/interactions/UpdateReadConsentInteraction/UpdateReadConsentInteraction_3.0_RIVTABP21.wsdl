@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements. See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership. CGI licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License. You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied. See the License for the
+ specific language governing permissions and limitations
+ under the License.
+ -->
+<wsdl:definitions name='UpdateReadConsentInteraction'
+    xmlns:wsdl='http://schemas.xmlsoap.org/wsdl/'
+    xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/'
+    xmlns:xs='http://www.w3.org/2001/XMLSchema'
+    xmlns:tjsr='urn:riv:cgi:healthcare:efrikort:UpdateReadConsentResponder:3'
+    xmlns:itr='urn:riv:itintegration:registry:1'
+    xmlns:tns='urn:riv:cgi:healthcare:efrikort:UpdateReadConsent:3:rivtabp21'
+    targetNamespace='urn:riv:cgi:healthcare:efrikort:UpdateReadConsent:3:rivtabp21'>
+
+    <wsdl:documentation>
+         Tjänsteinteraktionens namn: UpdateReadConsent
+         Beskrivning: 
+           Uppdaterar samtycket för given person-frikortstyp kombination.
+           Om personen gjort utträde från tjänsten kommer förfrågningen att stoppas
+         Revisioner: 
+         Tjänstedomän: cgi:healthcare:efrikort
+         Tjänsteinteraktionstyp: Fråga-Svar
+         WS-profil: RIVTABP21
+         Förvaltas av: CGI Sverige AB
+    </wsdl:documentation>
+    
+    <wsdl:types>
+        <xs:schema targetNamespace='urn:riv:cgi:healthcare:efrikort:UpdateReadConsent:3:rivtabp21'>
+            <xs:import schemaLocation='UpdateReadConsentResponder_3.0.xsd' namespace='urn:riv:cgi:healthcare:efrikort:UpdateReadConsentResponder:3' />
+            <xs:import schemaLocation='../../core_components/itintegration_registry_1.0.xsd' namespace='urn:riv:itintegration:registry:1' />
+        </xs:schema>
+    </wsdl:types>
+    
+        
+    <wsdl:message name='UpdateReadConsentRequest'>
+        <wsdl:part name='LogicalAddress' element='itr:LogicalAddress'>
+            <wsdl:documentation>http://tempuri.org</wsdl:documentation>
+        </wsdl:part>
+    
+        <wsdl:part name='parameters' element='tjsr:UpdateReadConsent' />
+    </wsdl:message>
+
+    <wsdl:message name='UpdateReadConsentResponse'>
+        <wsdl:part name='parameters' element='tjsr:UpdateReadConsentResponse' />
+    </wsdl:message>
+
+    <wsdl:portType name='UpdateReadConsentResponderInterface'>
+        <wsdl:operation name='UpdateReadConsent'>
+            <wsdl:input message='tns:UpdateReadConsentRequest' />
+            <wsdl:output message='tns:UpdateReadConsentResponse' />
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name='UpdateReadConsentResponderBinding' type='tns:UpdateReadConsentResponderInterface'>
+        <soap:binding style='document' transport='http://schemas.xmlsoap.org/soap/http' />
+        <wsdl:operation name='UpdateReadConsent'>
+            <soap:operation soapAction='urn:riv:cgi:healthcare:efrikort:UpdateReadConsentResponder:3:UpdateReadConsent' style='document' />
+            <wsdl:input>
+                <soap:header use='literal' message='tns:UpdateReadConsentRequest' part='LogicalAddress' />
+                <soap:body use='literal' parts='parameters' />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use='literal' />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name='UpdateReadConsentResponderService'>
+        <wsdl:port name='UpdateReadConsentResponderPort' binding='tns:UpdateReadConsentResponderBinding'>
+            <soap:address location='http://tempuri.org' />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

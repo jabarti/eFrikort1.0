@@ -15,13 +15,21 @@
         generateIsSetMethod="false"
         underscoreBinding="asCharInWord"/> 
 -->
-    <jxb:bindings schemaLocation = "itintegration_registry_1.0.xsd">
+    <jxb:bindings schemaLocation = "UpdateCardResponder_3.0.xsd">
         <jxb:bindings node = "/xs:schema">
             <jxb:schemaBindings>
-                <jxb:package name="riv.itintegration.registry" />
+                <jxb:package name="com.logica.se.healthcare.efrikort.riv.v3.ws.updatecard" />
             </jxb:schemaBindings>
         </jxb:bindings>
     </jxb:bindings>
 
+
+    <jxb:bindings schemaLocation = "../../core_components/cgi_healthcare_efrikort_3.0.xsd">
+        <jxb:bindings node = "/xs:schema">
+            <jxb:schemaBindings>
+                <jxb:package name="com.logica.se.healthcare.efrikort.riv.v3.ws.types" />
+            </jxb:schemaBindings>
+        </jxb:bindings>
+    </jxb:bindings>
 
 </jxb:bindings>
